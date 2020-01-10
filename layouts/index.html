@@ -1,0 +1,75 @@
+{{ partial "header.html" . }}
+
+<div class="section hero">
+  <div class="container">
+    <div class="row">
+      <div class="one-half column">
+        <h4 class="hero-heading">Looks like it's happening. Let's get prepared.</h4>
+        <p>Start exploring and...</p>
+        <a class="button button-primary" href="#content">Unpucker that butthole</a>
+      </div>
+      <div class="one-half column phones">
+        <img class="phone" alt="bomb" src="assets/images/bomb.png" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="content" class="home--hero">
+  <main>
+    <figure>
+      <a href="{{ .Site.Data.home.content.featuredWork.permalink }}">
+        <img src="{{ .Site.Data.home.content.featuredWork.coverimage }}">
+      </a>
+      <figcaption>
+        <h6>
+          <a href="{{ .Site.Data.home.content.featuredWork.permalink }}">{{ .Site.Data.home.content.featuredWork.title }}</a>
+        </h6>
+        <div>
+          <p>{{ .Site.Data.home.content.featuredWork.excerpt }}</p>
+        </div>
+      </figcaption>
+    </figure>
+  </main>
+  <div class="left">
+    {{ range .Site.Data.home.content.featuredGroupA }}
+      <figure>
+        <a href="{{ .permalink }}">
+          <img src="{{ .coverimage }}">
+        </a>
+        <figcaption>
+          <h6>
+            <a href="{{ .permalink }}">{{ .title }}</a>
+          </h6>
+        </figcaption>
+      </figure>
+    {{ end }}
+  </div>
+  <div class="right">
+    {{ range .Site.Data.home.content.featuredGroupB }}
+      <figure>
+        <a href="{{ .permalink }}">
+          <img src="{{ .coverimage }}">
+        </a>
+        <figcaption>
+          <h6>
+            <a href="{{ .permalink }}">{{ .title }}</a>
+          </h6>
+        </figcaption>
+      </figure>
+    {{ end }}
+  </div>
+</div>
+
+<div class="section values">
+  <form class="container" name="get-notified" method="POST" data-netlify="true">
+    <h3 class="section-heading">Signup for our newsletter?</h3>
+    <div class="row">
+      <label for="emailInput">Your email</label>
+      <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="emailInput" name="email" />
+    </div>
+    <input class="button-primary" type="submit" value="Submit" />
+  </form>
+</div>
+
+{{ partial "footer.html" . }}

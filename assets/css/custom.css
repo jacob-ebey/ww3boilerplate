@@ -1,13 +1,11 @@
-/* Overrides
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-input {
-  color: #222;
-}
-
 /* Shared
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button {
   border-radius: 100px;
+}
+
+img {
+  width: 100%;
 }
 
 /* Sections
@@ -29,7 +27,7 @@ input {
 .phone {
   position: relative;
   max-width: 80%;
-  margin: 3rem auto -12rem;
+  margin: 3rem auto 0;
 }
 .phone + .phone {
   display: none;
@@ -102,8 +100,15 @@ input {
   }
 }
 
+.hide-mobile {
+  display: none;
+}
+
 /* Bigger than 750 */
 @media (min-width: 750px) {
+  .hide-mobile {
+    display: block;
+  }
   .hero {
     height: 190px;
   }
@@ -125,6 +130,7 @@ input {
     top: -14rem;
     right: 5rem;
     max-height: 510px;
+    margin: 3rem auto -12rem;
   }
   .phone + .phone {
     top: -12rem;

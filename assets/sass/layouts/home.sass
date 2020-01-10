@@ -1,0 +1,36 @@
+.home--hero
+  display: grid
+  grid-template-areas: "m m" "l r"
+  margin-bottom: 8rem
+  border-top: 1px solid $border-color
+
+  & > main, & > .left, & > .right
+    justify-self: left
+  
+  & > main
+    grid-area: m
+    border-bottom: 1px solid $border-color
+  
+  & > .left
+    grid-area: l
+
+  & > .right
+    grid-area: r
+
+@media (min-width: 550px)
+  .home--hero
+    margin-bottom: 12rem
+
+@media (min-width: 750px)
+  .home--hero
+    display: grid
+    grid-template-areas: "l m m m r"
+    margin-bottom: 20rem
+    border-bottom: 1px solid $border-color
+
+    & > main
+      border-bottom: unset  
+    & > .left
+      border-right: 1px solid $border-color
+    & > .right
+      border-left: 1px solid $border-color
