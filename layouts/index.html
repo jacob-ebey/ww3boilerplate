@@ -22,9 +22,9 @@
         <img src="{{ .Site.Data.home.content.featuredWork.coverimage }}">
       </a>
       <figcaption>
-        <h6>
+        <h5 class="callout-header">
           <a href="{{ .Site.Data.home.content.featuredWork.permalink }}">{{ .Site.Data.home.content.featuredWork.title }}</a>
-        </h6>
+        </h5>
         <div>
           <p>{{ .Site.Data.home.content.featuredWork.excerpt }}</p>
         </div>
@@ -38,9 +38,9 @@
           <img src="{{ .coverimage }}">
         </a>
         <figcaption>
-          <h6>
+          <h5>
             <a href="{{ .permalink }}">{{ .title }}</a>
-          </h6>
+          </h5>
         </figcaption>
       </figure>
     {{ end }}
@@ -52,9 +52,9 @@
           <img src="{{ .coverimage }}">
         </a>
         <figcaption>
-          <h6>
+          <h5>
             <a href="{{ .permalink }}">{{ .title }}</a>
-          </h6>
+          </h5>
         </figcaption>
       </figure>
     {{ end }}

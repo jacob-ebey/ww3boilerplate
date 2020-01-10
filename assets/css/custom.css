@@ -12,7 +12,6 @@ img {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .section {
   padding: 8rem 0 7rem;
-  text-align: center;
 }
 .section-heading,
 .section-description {
@@ -21,6 +20,9 @@ img {
 
 /* Hero
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.hero {
+  text-align: center;
+}
 .phones {
   position: relative;
 }
@@ -40,6 +42,7 @@ img {
   background-size: cover;
   color: #fff;
   padding-bottom: 5rem;
+  text-align: center;
 }
 .value-multiplier {
   margin-bottom: .5rem;
@@ -57,6 +60,7 @@ img {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .get-help {
   border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 /* Categories
