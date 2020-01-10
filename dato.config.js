@@ -69,13 +69,13 @@ module.exports = (dato, root, i18n) => {
       featuredGroupA: dato.works.slice(1, 4).map(work => ({
         title: work.title,
         excerpt: work.excerpt,
-        coverimage: work.coverImage.url({ w: 200, fm: 'jpg', auto: 'compress' }),
+        coverimage: work.coverImage.url({ w: 500, fm: 'jpg', auto: 'compress' }),
         permalink: `/works/${work.slug}`
       })),
       featuredGroupB: dato.works.slice(5, 8).map(work => ({
         title: work.title,
         excerpt: work.excerpt,
-        coverimage: work.coverImage.url({ w: 200, fm: 'jpg', auto: 'compress' }),
+        coverimage: work.coverImage.url({ w: 500, fm: 'jpg', auto: 'compress' }),
         permalink: `/works/${work.slug}`
       }))
     }
