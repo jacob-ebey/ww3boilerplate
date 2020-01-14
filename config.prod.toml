@@ -4,11 +4,12 @@ Paginate = 5
 [params]
   env = "production"
 
-[[menu.main]]
-  name = "Home"
-  weight = 1
-  identifier = "home"
-  url = "/"
+[menu]
+  [[menu.main]]
+    name = "Home"
+    weight = 1
+    identifier = "home"
+    url = "/"
 
 
 # datocms:start

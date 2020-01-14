@@ -10,6 +10,7 @@ const htmlTag = require('html-tag');
 
 const toHtml = (tags) => (
   tags.map(({ tagName, attributes, content }) => (
+    tagName === 'title' ? `<title>${content}</title>` :
     htmlTag(tagName, attributes, content)
   )).join("")
 );
@@ -63,7 +64,7 @@ module.exports = (dato, root, i18n) => {
       featuredWork: {
         title: dato.home.featuredWork.title,
         excerpt: dato.home.featuredWork.excerpt,
-        coverimage: dato.home.featuredWork.coverImage.url({ w: 800, fm: 'jpg', auto: 'compress' }),
+        coverimage: dato.home.featuredWork.coverImage.url({ w: 1000, fm: 'jpg', auto: 'compress' }),
         permalink: `/works/${dato.home.featuredWork.slug}`
       },
       featuredGroupA: dato.works.slice(1, 4).map(work => ({
@@ -83,16 +84,15 @@ module.exports = (dato, root, i18n) => {
 
   // Create a markdown file with content coming from the `about_page` item
   // type stored in DatoCMS
-  root.createPost(`content/about.md`, 'yaml', {
-    frontmatter: {
-      title: dato.aboutPage.title,
-      subtitle: dato.aboutPage.subtitle,
-      photo: dato.aboutPage.photo.url({ w: 800, fm: 'jpg', auto: 'compress' }),
-      seoMetaTags: toHtml(dato.aboutPage.seoMetaTags),
-      menu: { main: { weight: 100 } }
-    },
-    content: dato.aboutPage.bio
-  });
+  // root.createPost(`content/about.md`, 'yaml', {
+  //   frontmatter: {
+  //     title: dato.aboutPage.title,
+  //     subtitle: dato.aboutPage.subtitle,
+  //     photo: dato.aboutPage.photo.url({ w: 800, fm: 'jpg', auto: 'compress' }),
+  //     seoMetaTags: toHtml(dato.aboutPage.seoMetaTags)
+  //   },
+  //   content: dato.aboutPage.bio
+  // });
 
   // Create a `work` directory (or empty it if already exists)...
   root.directory('content/works', dir => {
