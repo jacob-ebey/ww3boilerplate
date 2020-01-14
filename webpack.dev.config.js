@@ -1,18 +1,18 @@
-const path = require('path');
-const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const webpack = require("webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    all: __dirname + '/assets/js/index.js',
+    all: __dirname + "/assets/js/index.js"
   },
   resolve: {
-    modules: [path.resolve(__dirname + '/assets/js'), 'node_modules'],
+    modules: [path.resolve(__dirname + "/assets/js"), "node_modules"]
   },
   output: {
-    path: __dirname + '/public/assets',
-    filename: '[name].js',
-    publicPath: '/assets',
+    path: __dirname + "/public/assets",
+    filename: "[name].js",
+    publicPath: "/assets"
   },
   module: {
     rules: [
@@ -20,20 +20,20 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '/images/[name].[ext]',
-            },
-          },
-        ],
+              name: "/images/[name].[ext]"
+            }
+          }
+        ]
       },
       {
         test: /.*\.sass$/,
         use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-          { loader: 'import-glob-loader' }
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: "sass-loader" },
+          { loader: "import-glob-loader" }
         ]
       },
       {
@@ -41,29 +41,29 @@ module.exports = {
         exclude: /(node_modules)/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env']
+              presets: ["@babel/preset-env"]
             }
           }
-        ],
+        ]
       }
     ]
   },
   plugins: [
     new CopyPlugin([
-      { from: 'assets/images', to: 'images' },
+      { from: "assets/images", to: "images" },
+      { from: "assets/icons", to: "../" }
     ]),
     new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      "process.env": {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
-    }),
+    })
   ],
   devServer: {
     port: 3000,
     inline: true,
-    stats: 'minimal'
-  },
+    stats: "minimal"
+  }
 };
-
