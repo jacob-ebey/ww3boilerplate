@@ -1,0 +1,19 @@
+{{ partial "header.html" . }}
+
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <main class="column">
+        <h1>{{ .Title }}</h1>
+        <p>{{ .Params.excerpt }}</p>
+
+        {{ .Content }}
+
+        <img src="{{ .Params.detailImage }}"  alt="{{ .Params.detailImageAlt }}" />
+      </main>
+    </div>
+  </div>
+</div>
+
+{{ partial "footer.html" . }}
+

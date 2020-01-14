@@ -1,0 +1,19 @@
+baseurl = "/"
+Paginate = 5
+
+[params]
+  env = "development"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    weight = 1
+    identifier = "home"
+    url = "/"
+
+
+
+# datocms:start
+title = "WW3 Starter Kit"
+languageCode = "en"
+# datocms:end

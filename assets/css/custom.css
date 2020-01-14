@@ -1,20 +1,32 @@
-/* Overrides
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-input {
-  color: #222;
-}
-
 /* Shared
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .button {
   border-radius: 100px;
+}
+
+img {
+  width: 100%;
+}
+
+.scroll-to {
+  padding-top: 68px;
+}
+@media (min-width: 750px) {
+  .scroll-to {
+    padding-top: 0;
+  }
 }
 
 /* Sections
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .section {
   padding: 8rem 0 7rem;
-  text-align: center;
 }
 .section-heading,
 .section-description {
@@ -23,13 +35,16 @@ input {
 
 /* Hero
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.hero {
+  text-align: center;
+}
 .phones {
   position: relative;
 }
 .phone {
   position: relative;
   max-width: 80%;
-  margin: 3rem auto -12rem;
+  margin: 3rem auto 0;
 }
 .phone + .phone {
   display: none;
@@ -42,6 +57,7 @@ input {
   background-size: cover;
   color: #fff;
   padding-bottom: 5rem;
+  text-align: center;
 }
 .value-multiplier {
   margin-bottom: .5rem;
@@ -59,6 +75,7 @@ input {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .get-help {
   border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 /* Categories
@@ -87,14 +104,12 @@ input {
     top: -7rem;
     right: 3rem;
     max-height: 362px;
-    z-index: 3;
   }
   .phone + .phone {
     top: -6rem;
     display: block;
     max-width: 73.8%;
     right: 0;
-    z-index: 2;
     max-height: 338px;
   }
   .hero-heading {
@@ -102,8 +117,15 @@ input {
   }
 }
 
+.hide-mobile {
+  display: none;
+}
+
 /* Bigger than 750 */
 @media (min-width: 750px) {
+  .hide-mobile {
+    display: block;
+  }
   .hero {
     height: 190px;
   }
@@ -122,12 +144,13 @@ input {
     margin-right: auto;
   }
   .phone {
-    top: -14rem;
+    /* top: -14rem; */
     right: 5rem;
     max-height: 510px;
+    margin: 3rem auto -12rem;
   }
   .phone + .phone {
-    top: -12rem;
+    /* top: -12rem; */
     max-height: 472px;
   }
   .categories {
@@ -147,11 +170,11 @@ input {
     font-size: 3.0rem;
   }
   .phone {
-    top: -16rem;
+    /* top: -16rem; */
     max-height: 615px;
   }
   .phone + .phone {
-    top: -14rem;
+    /* top: -14rem; */
     max-height: 570px;
   }
 }
