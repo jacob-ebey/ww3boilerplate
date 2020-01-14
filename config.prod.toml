@@ -12,6 +12,7 @@ Paginate = 5
     url = "/"
 
 
+
 # datocms:start
 title = "WW3 Starter Kit"
 languageCode = "en"
