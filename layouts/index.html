@@ -20,7 +20,7 @@
   <main>
     <figure>
       <a href="{{ .Site.Data.home.content.featuredWork.permalink }}">
-        <img src="{{ .Site.Data.home.content.featuredWork.coverimage }}">
+        <img src="{{ .Site.Data.home.content.featuredWork.coverimage }}" alt="{{ .Site.Data.home.content.featuredWork.coverimageAlt }}">
       </a>
       <figcaption>
         <h5 class="callout-header">
@@ -36,7 +36,7 @@
     {{ range .Site.Data.home.content.featuredGroupA }}
       <figure>
         <a href="{{ .permalink }}">
-          <img src="{{ .coverimage }}">
+          <img src="{{ .coverimage }}" alt="{{ .coverimageAlt }}">
         </a>
         <figcaption>
           <h5>
@@ -50,7 +50,7 @@
     {{ range .Site.Data.home.content.featuredGroupB }}
       <figure>
         <a href="{{ .permalink }}">
-          <img src="{{ .coverimage }}">
+          <img src="{{ .coverimage }}" alt="{{ .coverimageAlt }}">
         </a>
         <figcaption>
           <h5>

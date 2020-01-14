@@ -65,18 +65,21 @@ module.exports = (dato, root, i18n) => {
         title: dato.home.featuredWork.title,
         excerpt: dato.home.featuredWork.excerpt,
         coverimage: dato.home.featuredWork.coverImage.url({ w: 1000, fm: 'jpg', auto: 'compress' }),
+        coverimageAlt: dato.home.featuredWork.coverImage.title,
         permalink: `/works/${dato.home.featuredWork.slug}`
       },
       featuredGroupA: dato.works.slice(1, 4).map(work => ({
         title: work.title,
         excerpt: work.excerpt,
         coverimage: work.coverImage.url({ w: 500, fm: 'jpg', auto: 'compress' }),
+        coverimageAlt: work.coverImage.title,
         permalink: `/works/${work.slug}`
       })),
       featuredGroupB: dato.works.slice(5, 8).map(work => ({
         title: work.title,
         excerpt: work.excerpt,
         coverimage: work.coverImage.url({ w: 500, fm: 'jpg', auto: 'compress' }),
+        coverimageAlt: work.coverImage.title,
         permalink: `/works/${work.slug}`
       }))
     }
@@ -105,6 +108,7 @@ module.exports = (dato, root, i18n) => {
           coverImage: work.coverImage.url({ w: 450, fm: 'jpg', auto: 'compress' }),
           image: work.coverImage.url({ fm: 'jpg', auto: 'compress' }),
           detailImage: work.coverImage.url({ w: 600, fm: 'jpg', auto: 'compress' }),
+          detailImageAlt: work.coverImage.title,
           excerpt: work.excerpt,
           seoMetaTags: toHtml(work.seoMetaTags),
           extraImages: work.gallery.map(item =>
