@@ -9,7 +9,7 @@ const htmlTag = require('html-tag');
 // <meta name="description" content="foobar" />
 
 const toTitle = (dato, content) => {
-  let finalContent = (process.env.SITE_NAME || content).trim();
+  let finalContent = (process.env.SITE_NAME || content).replace(/^\s+|\s+$/g, '');
   if (!!process.env.SITE_NAME) {
     finalContent = finalContent.replace(dato.site.globalSeo.titleSuffix, `- ${process.env.SITE_NAME}`)
   }
@@ -18,12 +18,12 @@ const toTitle = (dato, content) => {
 }
 
 const toDescription = (dato, content) => {
-  let finalContent = (content || dato.site.globalSeo.fallbackSeo.description).replace(/^\s+|\s+$/g, '');
+  let finalContent = (content || process.env.SITE_DESCRIPTION).replace(/^\s+|\s+$/g, '');
   if (!!process.env.SITE_DESCRIPTION && finalContent === dato.site.globalSeo.fallbackSeo.description.replace(/^\s+|\s+$/g, '')) {
-    finalContent = process.env.SITE_DESCRIPTION
+    finalContent = process.env.SITE_DESCRIPTION.replace(/"/g, '&quot;')
   }
 
-  return escape(finalContent);
+  return finalContent.replace(/"/g, '&quot;');
 }
 
 const toHtml = (dato, tags) => (
