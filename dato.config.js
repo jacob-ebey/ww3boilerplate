@@ -8,11 +8,36 @@ const htmlTag = require('html-tag');
 //
 // <meta name="description" content="foobar" />
 
-const toHtml = (tags) => (
-  tags.map(({ tagName, attributes, content }) => (
-    tagName === 'title' ? `<title>${content}</title>` :
-    htmlTag(tagName, attributes, content)
-  )).join("")
+const toTitle = (dato, content) => {
+  let finalContent = (process.env.SITE_NAME || content).trim();
+  if (!!process.env.SITE_NAME) {
+    finalContent = finalContent.replace(dato.site.globalSeo.titleSuffix, `- ${process.env.SITE_NAME}`)
+  }
+
+  return finalContent;
+}
+
+const toDescription = (dato, content) => {
+  let finalContent = (content || dato.site.globalSeo.fallbackSeo.description).replace(/^\s+|\s+$/g, '');
+  if (!!process.env.SITE_DESCRIPTION && finalContent === dato.site.globalSeo.fallbackSeo.description.replace(/^\s+|\s+$/g, '')) {
+    finalContent = process.env.SITE_DESCRIPTION
+  }
+
+  return escape(finalContent);
+}
+
+const toHtml = (dato, tags) => (
+  tags.map(({ tagName, attributes, content }) => {
+    if (tagName === 'title') {
+      return `<title>${toTitle(dato, content)}</title>`;
+    }
+
+    if (tagName === 'meta' && attributes.name && attributes.name.indexOf("description") !== -1) {
+      attributes.content = toDescription(dato, attributes.content)
+    }
+    
+    return htmlTag(tagName, attributes, content)
+  }).join("")
 );
 
 // Arguments that will receive the mapping function:
@@ -35,14 +60,14 @@ module.exports = (dato, root, i18n) => {
   // stored on DatoCMS
   ['config.dev.toml', 'config.prod.toml'].forEach(file => {
     root.addToDataFile(file, 'toml', {
-      title: dato.site.globalSeo.siteName,
+      title: process.env.SITE_NAME || dato.site.globalSeo.siteName,
       languageCode: i18n.locale
     });
   });
 
   // Create a YAML data file to store global data about the site
   root.createDataFile('data/settings.yml', 'yaml', {
-    name: dato.site.globalSeo.siteName,
+    name: process.env.SITE_NAME || dato.site.globalSeo.siteName,
     language: dato.site.locales[0],
     intro: dato.home.introText,
     copyright: dato.home.copyright,
@@ -53,8 +78,8 @@ module.exports = (dato, root, i18n) => {
         url: profile.url,
       };
     }),
-    faviconMetaTags: toHtml(dato.site.faviconMetaTags),
-    seoMetaTags: toHtml(dato.home.seoMetaTags)
+    faviconMetaTags: toHtml(dato, dato.site.faviconMetaTags),
+    seoMetaTags: toHtml(dato, dato.home.seoMetaTags)
   });
 
   // Create a markdown file with content coming from the `home_page` item
@@ -92,7 +117,7 @@ module.exports = (dato, root, i18n) => {
   //     title: dato.aboutPage.title,
   //     subtitle: dato.aboutPage.subtitle,
   //     photo: dato.aboutPage.photo.url({ w: 800, fm: 'jpg', auto: 'compress' }),
-  //     seoMetaTags: toHtml(dato.aboutPage.seoMetaTags)
+  //     seoMetaTags: toHtml(dato, dato.aboutPage.seoMetaTags)
   //   },
   //   content: dato.aboutPage.bio
   // });
@@ -110,7 +135,7 @@ module.exports = (dato, root, i18n) => {
           detailImage: work.coverImage.url({ w: 600, fm: 'jpg', auto: 'compress' }),
           detailImageAlt: work.coverImage.title,
           excerpt: work.excerpt,
-          seoMetaTags: toHtml(work.seoMetaTags),
+          seoMetaTags: toHtml(dato, work.seoMetaTags),
           extraImages: work.gallery.map(item =>
             item.url({ h: 300, fm: 'jpg', auto: 'compress' })
           ),
